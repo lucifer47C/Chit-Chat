@@ -13,7 +13,6 @@ The system uses client-side encryption with modern cryptographic primitives and 
 
 **Figure:** End-to-end encrypted real-time messaging architecture where the backend acts only as a relay and ciphertext storage layer.
 
----
 
 - Frontend: React + TypeScript
 - Backend: Node.js (WebSocket + REST)
