@@ -1,0 +1,1 @@
+export type WSMessage = | { type: "MESSAGE"; to: string; payload: ArrayBuffer } | { type: "KEY_EXCHANGE"; to: string; payload: ArrayBuffer };
