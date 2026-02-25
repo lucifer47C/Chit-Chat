@@ -66,6 +66,7 @@ All cryptographic operations are performed on the client. The server never has a
 - Why X25519: Chosen for strong security guarantees and performance in modern secure messaging systems.
 - Why AES-GCM: Provides authenticated encryption, ensuring both confidentiality and message integrity.
 - Why client-side encryption: Ensures that even if the backend infrastructure is compromised, message confidentiality remains protected.
+- How is the [plan and status](docs/Plan.md) of this project?
 
 #### **Motivation**
 This project was built to understand better how secure communication systems operate in practice, beyond theoretical cryptography—focusing on real-world constraints such as deployment, reliability, and system boundaries.
