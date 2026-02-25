@@ -24,7 +24,7 @@ All cryptographic operations are performed on the client. The server never has a
 
 ### Security Design
 **Message Flow**
-- Client A generates an ephemeral session key
+- Client A initiates a secure session using ephemeral key exchange
 - Client A performs X25519 key exchange with Client B's public key
 - Shared secret derived using HKDF
 - Message encrypted using AES-256-GCM
@@ -62,11 +62,19 @@ All cryptographic operations are performed on the client. The server never has a
 - Client compromise is not mitigated
 - These tradeoffs were accepted to prioritize confidentiality and system simplicity.
 
-**Some Questions**
+**Design Decisions & Open Questions**
 - Why X25519: Chosen for strong security guarantees and performance in modern secure messaging systems.
 - Why AES-GCM: Provides authenticated encryption, ensuring both confidentiality and message integrity.
 - Why client-side encryption: Ensures that even if the backend infrastructure is compromised, message confidentiality remains protected.
-- How is the [plan and status](docs/Plan.md) of this project?
+- How is the plan and status of this project?
+  
+  The detailed design considerations, roadmap, and implementation plan
+for this project are documented in: ➡️ [plan.md](docs/Plan.md)
+
+This project is currently focused on designing and validating the architecture of a secure end-to-end encrypted messaging system.
+
+The implementation is being developed incrementally while evaluating security, performance, and deployment trade-offs.
+
 
 #### **Motivation**
 This project was built to understand better how secure communication systems operate in practice, beyond theoretical cryptography—focusing on real-world constraints such as deployment, reliability, and system boundaries.
