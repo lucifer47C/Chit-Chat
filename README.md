@@ -23,7 +23,15 @@ The system uses client-side encryption with modern cryptographic primitives and 
 All cryptographic operations are performed on the client. The server never has access to plaintext messages or private keys.
 
 ### Security Design
-
+**Message Flow**
+- Client A generates an ephemeral session key
+- Client A performs X25519 key exchange with Client B's public key
+- Shared secret derived using HKDF
+- Message encrypted using AES-256-GCM
+- Ciphertext sent via WebSocket
+- Server relays ciphertext only
+- Client B decrypts locally
+  
 #### Threat Model
 
 **Assumed threats**
@@ -38,7 +46,7 @@ All cryptographic operations are performed on the client. The server never has a
 
 **End-to-End Encryption**
 - Each client generates a long-term identity key pair locally
-- Session keys are derived using X25519 and HKDF
+- The design uses X25519 + HKDF for session key derivation.
 - Messages are encrypted using AES-256-GCM
 - Only the ciphertext is transmitted and stored
 
@@ -54,5 +62,10 @@ All cryptographic operations are performed on the client. The server never has a
 - Client compromise is not mitigated
 - These tradeoffs were accepted to prioritize confidentiality and system simplicity.
 
+**Some Questions**
+- Why X25519: Chosen for strong security guarantees and performance in modern secure messaging systems.
+- Why AES-GCM: Provides authenticated encryption, ensuring both confidentiality and message integrity.
+- Why client-side encryption: Ensures that even if the backend infrastructure is compromised, message confidentiality remains protected.
+
 #### **Motivation**
-This project was built to better understand how secure communication systems operate in practice, beyond theoretical cryptography—focusing on real-world constraints such as deployment, reliability, and system boundaries.
+This project was built to understand better how secure communication systems operate in practice, beyond theoretical cryptography—focusing on real-world constraints such as deployment, reliability, and system boundaries.
